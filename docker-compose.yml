@@ -1,0 +1,52 @@
+# Qurator local stack.
+#   docker compose up -d db          → just the database (default dev flow)
+#   docker compose --profile full up → db + backend API
+services:
+  db:
+    build: ./db
+    image: qurator-postgres:16-hypopg
+    container_name: qurator-db
+    environment:
+      POSTGRES_USER: qurator
+      POSTGRES_PASSWORD: qurator
+      POSTGRES_DB: qurator
+    ports:
+      - "5433:5432"          # host 5433 -> avoid clashing with a local Homebrew Postgres on 5432
+    volumes:
+      - qurator_pgdata:/var/lib/postgresql/data
+    # Tuned so cost estimates and real timings are stable and comparable across runs.
+    command:
+      - "postgres"
+      - "-c"
+      - "shared_preload_libraries=pg_stat_statements"
+      - "-c"
+      - "pg_stat_statements.track=all"
+      - "-c"
+      - "random_page_cost=1.1"        # SSD-like; keeps HypoPG estimates realistic
+      - "-c"
+      - "max_parallel_workers_per_gather=0"  # deterministic single-threaded timings for the demo
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U qurator -d qurator"]
+      interval: 3s
+      timeout: 5s
+      retries: 20
+
+  backend:
+    build: ./backend
+    image: qurator-backend:latest
+    container_name: qurator-backend
+    profiles: ["full"]
+    environment:
+      QURATOR_PG_HOST: db
+      QURATOR_PG_PORT: 5432
+      QURATOR_PG_USER: qurator
+      QURATOR_PG_PASSWORD: qurator
+      QURATOR_PG_DB: qurator
+    ports:
+      - "8088:8088"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  qurator_pgdata:

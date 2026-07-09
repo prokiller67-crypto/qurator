@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #060911;
+  --bg-panel: #0b1120;
+  --bg-elev: #111a2e;
+  --border: #1d2942;
+  --border-soft: #16203a;
+  --text: #e8eefb;
+  --text-dim: #8a99ba;
+  --text-faint: #55648a;
+
+  --violet: #8b5cf6;
+  --cyan: #22d3ee;
+  --emerald: #34d399;
+  --amber: #fbbf24;
+  --rose: #fb7185;
+  --blue: #60a5fa;
+
+  --q-grad: linear-gradient(135deg, #8b5cf6 0%, #22d3ee 100%);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-panel: var(--bg-panel);
+  --color-elev: var(--bg-elev);
+  --color-line: var(--border);
+  --color-ink: var(--text);
+  --color-dim: var(--text-dim);
+  --color-violet: var(--violet);
+  --color-cyan: var(--cyan);
+  --color-emerald: var(--emerald);
+  --color-amber: var(--amber);
+  --color-rose: var(--rose);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html { color-scheme: dark; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  background-image:
+    radial-gradient(900px 500px at 12% -8%, rgba(139, 92, 246, 0.10), transparent 60%),
+    radial-gradient(760px 460px at 92% 4%, rgba(34, 211, 238, 0.08), transparent 60%);
+  background-attachment: fixed;
+}
+
+.panel {
+  background: color-mix(in srgb, var(--bg-panel) 88%, transparent);
+  border: 1px solid var(--border-soft);
+  border-radius: 16px;
+  backdrop-filter: blur(6px);
+}
+
+.mono { font-family: var(--font-mono), ui-monospace, monospace; }
+
+.q-text {
+  background: var(--q-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 2px 9px; border-radius: 999px; font-size: 11px; font-weight: 600;
+  border: 1px solid var(--border);
+}
+
+.glow-violet { box-shadow: 0 0 0 1px rgba(139,92,246,.4), 0 0 30px -6px rgba(139,92,246,.5); }
+.glow-emerald { box-shadow: 0 0 0 1px rgba(52,211,153,.4), 0 0 30px -6px rgba(52,211,153,.45); }
+
+@keyframes pulse-soft { 0%,100% { opacity: .55 } 50% { opacity: 1 } }
+.pulse { animation: pulse-soft 1.8s ease-in-out infinite; }
+
+@keyframes rise { from { transform: translateY(8px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
+.rise { animation: rise .5s ease both; }
+
+*::-webkit-scrollbar { height: 8px; width: 8px; }
+*::-webkit-scrollbar-thumb { background: var(--border); border-radius: 8px; }
+*::-webkit-scrollbar-track { background: transparent; }

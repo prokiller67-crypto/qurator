@@ -1,0 +1,7430 @@
+{
+  "generated_at": "2026-07-09T14:21:28.781598+00:00",
+  "meta": {
+    "budget_mb": 250.0,
+    "total_candidate_mb": 999.7,
+    "n_candidates_total": 21,
+    "n_candidates_active": 15,
+    "n_qubits": 15,
+    "baseline_workload_cost": 1537516.0
+  },
+  "workload": [
+    {
+      "id": "account_statement",
+      "weight": 5.0,
+      "note": "monthly statement for one account \u2014 wants transactions(account_id, ts)",
+      "baseline_cost": 58365.57
+    },
+    {
+      "id": "settlement_by_merchant",
+      "weight": 3.0,
+      "note": "weekly settlement dashboard \u2014 wants transactions(status, ts)",
+      "baseline_cost": 58603.25
+    },
+    {
+      "id": "fraud_cnp_highvalue",
+      "weight": 4.0,
+      "note": "card-not-present high-value scan \u2014 wants transactions(channel, amount)",
+      "baseline_cost": 53355.94
+    },
+    {
+      "id": "flagged_highvalue",
+      "weight": 3.0,
+      "note": "review queue of flagged high-value txns \u2014 wants transactions(is_flagged, amount)",
+      "baseline_cost": 48264.0
+    },
+    {
+      "id": "account_ledger",
+      "weight": 4.0,
+      "note": "recent balance history \u2014 wants ledger_entries(account_id, posted_at)",
+      "baseline_cost": 45959.9
+    },
+    {
+      "id": "velocity_check",
+      "weight": 5.0,
+      "note": "recent transaction velocity \u2014 wants transactions(account_id, ts)",
+      "baseline_cost": 53268.4
+    },
+    {
+      "id": "merchant_category_dash",
+      "weight": 3.0,
+      "note": "category volume dashboard \u2014 wants merchants(category) + transactions(merchant_id, ts)",
+      "baseline_cost": 54427.53
+    },
+    {
+      "id": "cross_border_scan",
+      "weight": 2.0,
+      "note": "cross-border high-value count \u2014 wants amount + country indexes",
+      "baseline_cost": 49099.24
+    }
+  ],
+  "candidates": [
+    {
+      "id": "txn_account",
+      "label": "transactions(account_id)",
+      "size_bytes": 58056704,
+      "size_mb": 58.06,
+      "total_benefit": 465914.9,
+      "helps": [
+        "account_statement",
+        "velocity_check"
+      ]
+    },
+    {
+      "id": "txn_merchant",
+      "label": "transactions(merchant_id)",
+      "size_bytes": 58056704,
+      "size_mb": 58.06,
+      "total_benefit": 64617.299999999996,
+      "helps": [
+        "merchant_category_dash"
+      ]
+    },
+    {
+      "id": "txn_ts",
+      "label": "transactions(ts)",
+      "size_bytes": 58056704,
+      "size_mb": 58.06,
+      "total_benefit": 384412.74,
+      "helps": [
+        "account_statement",
+        "settlement_by_merchant",
+        "velocity_check",
+        "merchant_category_dash"
+      ]
+    },
+    {
+      "id": "txn_status",
+      "label": "transactions(status)",
+      "size_bytes": 58056704,
+      "size_mb": 58.06,
+      "total_benefit": 0.0,
+      "helps": []
+    },
+    {
+      "id": "txn_channel",
+      "label": "transactions(channel)",
+      "size_bytes": 52248576,
+      "size_mb": 52.25,
+      "total_benefit": 90090.56000000001,
+      "helps": [
+        "fraud_cnp_highvalue"
+      ]
+    },
+    {
+      "id": "txn_flagged",
+      "label": "transactions(is_flagged)",
+      "size_bytes": 37732352,
+      "size_mb": 37.73,
+      "total_benefit": 135189.75,
+      "helps": [
+        "flagged_highvalue"
+      ]
+    },
+    {
+      "id": "txn_amount",
+      "label": "transactions(amount)",
+      "size_bytes": 52248576,
+      "size_mb": 52.25,
+      "total_benefit": 371441.06,
+      "helps": [
+        "fraud_cnp_highvalue",
+        "flagged_highvalue",
+        "cross_border_scan"
+      ]
+    },
+    {
+      "id": "txn_account_ts",
+      "label": "transactions(account_id, ts)",
+      "size_bytes": 81281024,
+      "size_mb": 81.28,
+      "total_benefit": 556209.61,
+      "helps": [
+        "account_statement",
+        "settlement_by_merchant",
+        "velocity_check"
+      ]
+    },
+    {
+      "id": "txn_merchant_ts",
+      "label": "transactions(merchant_id, ts)",
+      "size_bytes": 81281024,
+      "size_mb": 81.28,
+      "total_benefit": 92134.91999999998,
+      "helps": [
+        "settlement_by_merchant",
+        "merchant_category_dash"
+      ]
+    },
+    {
+      "id": "txn_status_ts",
+      "label": "transactions(status, ts)",
+      "size_bytes": 81281024,
+      "size_mb": 81.28,
+      "total_benefit": 136588.76,
+      "helps": [
+        "account_statement",
+        "settlement_by_merchant",
+        "velocity_check"
+      ]
+    },
+    {
+      "id": "txn_channel_amount",
+      "label": "transactions(channel, amount)",
+      "size_bytes": 69672960,
+      "size_mb": 69.67,
+      "total_benefit": 252366.69000000003,
+      "helps": [
+        "fraud_cnp_highvalue",
+        "flagged_highvalue",
+        "cross_border_scan"
+      ]
+    },
+    {
+      "id": "txn_flagged_amount",
+      "label": "transactions(is_flagged, amount)",
+      "size_bytes": 55156736,
+      "size_mb": 55.16,
+      "total_benefit": 278555.21,
+      "helps": [
+        "fraud_cnp_highvalue",
+        "flagged_highvalue",
+        "cross_border_scan"
+      ]
+    },
+    {
+      "id": "led_account",
+      "label": "ledger_entries(account_id)",
+      "size_bytes": 58056704,
+      "size_mb": 58.06,
+      "total_benefit": 148516.16,
+      "helps": [
+        "account_ledger"
+      ]
+    },
+    {
+      "id": "led_posted",
+      "label": "ledger_entries(posted_at)",
+      "size_bytes": 58056704,
+      "size_mb": 58.06,
+      "total_benefit": 182511.92,
+      "helps": [
+        "account_ledger"
+      ]
+    },
+    {
+      "id": "led_account_posted",
+      "label": "ledger_entries(account_id, posted_at)",
+      "size_bytes": 81281024,
+      "size_mb": 81.28,
+      "total_benefit": 183657.24000000002,
+      "helps": [
+        "account_ledger"
+      ]
+    },
+    {
+      "id": "led_txn",
+      "label": "ledger_entries(txn_id)",
+      "size_bytes": 58056704,
+      "size_mb": 58.06,
+      "total_benefit": 0.0,
+      "helps": []
+    },
+    {
+      "id": "acc_country",
+      "label": "accounts(country)",
+      "size_bytes": 434176,
+      "size_mb": 0.43,
+      "total_benefit": 0.0,
+      "helps": []
+    },
+    {
+      "id": "acc_status",
+      "label": "accounts(status)",
+      "size_bytes": 548864,
+      "size_mb": 0.55,
+      "total_benefit": 0.0,
+      "helps": []
+    },
+    {
+      "id": "mer_category",
+      "label": "merchants(category)",
+      "size_bytes": 57344,
+      "size_mb": 0.06,
+      "total_benefit": 56.549999999995634,
+      "helps": [
+        "merchant_category_dash"
+      ]
+    },
+    {
+      "id": "mer_country",
+      "label": "merchants(country)",
+      "size_bytes": 40960,
+      "size_mb": 0.04,
+      "total_benefit": 0.0,
+      "helps": []
+    },
+    {
+      "id": "mer_risk",
+      "label": "merchants(risk_score)",
+      "size_bytes": 32768,
+      "size_mb": 0.03,
+      "total_benefit": 0.0,
+      "helps": []
+    }
+  ],
+  "active_candidates": [
+    "txn_account",
+    "txn_merchant",
+    "txn_ts",
+    "txn_channel",
+    "txn_flagged",
+    "txn_amount",
+    "txn_account_ts",
+    "txn_merchant_ts",
+    "txn_status_ts",
+    "txn_channel_amount",
+    "txn_flagged_amount",
+    "led_account",
+    "led_posted",
+    "led_account_posted",
+    "mer_category"
+  ],
+  "interaction_edges": [
+    {
+      "source": "txn_account",
+      "target": "txn_account_ts",
+      "weight": 465914.9
+    },
+    {
+      "source": "txn_amount",
+      "target": "txn_channel_amount",
+      "weight": 250559.9
+    },
+    {
+      "source": "txn_ts",
+      "target": "txn_account_ts",
+      "weight": 234964.0
+    },
+    {
+      "source": "txn_account",
+      "target": "txn_ts",
+      "weight": 226893.8
+    },
+    {
+      "source": "txn_amount",
+      "target": "txn_flagged_amount",
+      "weight": 225983.4
+    },
+    {
+      "source": "led_posted",
+      "target": "led_account_posted",
+      "weight": 182511.9
+    },
+    {
+      "source": "led_account",
+      "target": "led_posted",
+      "weight": 148516.2
+    },
+    {
+      "source": "led_account",
+      "target": "led_account_posted",
+      "weight": 148516.2
+    },
+    {
+      "source": "txn_channel_amount",
+      "target": "txn_flagged_amount",
+      "weight": 136718.7
+    },
+    {
+      "source": "txn_flagged",
+      "target": "txn_flagged_amount",
+      "weight": 135189.8
+    },
+    {
+      "source": "txn_ts",
+      "target": "txn_status_ts",
+      "weight": 123775.2
+    },
+    {
+      "source": "txn_flagged",
+      "target": "txn_amount",
+      "weight": 91335.1
+    },
+    {
+      "source": "txn_channel",
+      "target": "txn_amount",
+      "weight": 90090.6
+    },
+    {
+      "source": "txn_channel",
+      "target": "txn_channel_amount",
+      "weight": 90090.6
+    },
+    {
+      "source": "txn_channel",
+      "target": "txn_flagged_amount",
+      "weight": 90090.6
+    },
+    {
+      "source": "txn_ts",
+      "target": "txn_merchant_ts",
+      "weight": 68066.0
+    },
+    {
+      "source": "txn_merchant",
+      "target": "txn_merchant_ts",
+      "weight": 64617.3
+    },
+    {
+      "source": "txn_merchant",
+      "target": "txn_ts",
+      "weight": 59995.8
+    },
+    {
+      "source": "txn_account_ts",
+      "target": "txn_status_ts",
+      "weight": 34322.2
+    },
+    {
+      "source": "txn_account",
+      "target": "txn_status_ts",
+      "weight": 26252.0
+    },
+    {
+      "source": "txn_flagged",
+      "target": "txn_channel_amount",
+      "weight": 19148.6
+    },
+    {
+      "source": "txn_account_ts",
+      "target": "txn_merchant_ts",
+      "weight": 8070.2
+    },
+    {
+      "source": "txn_merchant_ts",
+      "target": "txn_status_ts",
+      "weight": 8070.2
+    },
+    {
+      "source": "txn_merchant",
+      "target": "mer_category",
+      "weight": 56.5
+    }
+  ],
+  "solvers": {
+    "greedy": {
+      "method": "greedy",
+      "selected": [
+        "txn_account",
+        "txn_ts",
+        "txn_amount",
+        "led_posted"
+      ],
+      "selected_detail": [
+        {
+          "id": "txn_account",
+          "label": "transactions(account_id)"
+        },
+        {
+          "id": "txn_ts",
+          "label": "transactions(ts)"
+        },
+        {
+          "id": "txn_amount",
+          "label": "transactions(amount)"
+        },
+        {
+          "id": "led_posted",
+          "label": "ledger_entries(posted_at)"
+        }
+      ],
+      "size_mb": 226.4,
+      "benefit": 1177386.9,
+      "pct_of_optimum": 93.5,
+      "residual_cost": 360129.2
+    },
+    "anneal": {
+      "method": "anneal",
+      "selected": [
+        "txn_ts",
+        "txn_amount",
+        "txn_account_ts",
+        "led_posted"
+      ],
+      "selected_detail": [
+        {
+          "id": "txn_ts",
+          "label": "transactions(ts)"
+        },
+        {
+          "id": "txn_amount",
+          "label": "transactions(amount)"
+        },
+        {
+          "id": "txn_account_ts",
+          "label": "transactions(account_id, ts)"
+        },
+        {
+          "id": "led_posted",
+          "label": "ledger_entries(posted_at)"
+        }
+      ],
+      "size_mb": 249.6,
+      "benefit": 1259611.4,
+      "pct_of_optimum": 100.0,
+      "residual_cost": 277904.7
+    },
+    "exact": {
+      "method": "exact",
+      "selected": [
+        "txn_ts",
+        "txn_amount",
+        "txn_account_ts",
+        "led_posted"
+      ],
+      "selected_detail": [
+        {
+          "id": "txn_ts",
+          "label": "transactions(ts)"
+        },
+        {
+          "id": "txn_amount",
+          "label": "transactions(amount)"
+        },
+        {
+          "id": "txn_account_ts",
+          "label": "transactions(account_id, ts)"
+        },
+        {
+          "id": "led_posted",
+          "label": "ledger_entries(posted_at)"
+        }
+      ],
+      "size_mb": 249.6,
+      "benefit": 1259611.4,
+      "pct_of_optimum": 100.0,
+      "residual_cost": 277904.7
+    },
+    "qaoa": {
+      "method": "qaoa",
+      "selected": [
+        "txn_ts",
+        "txn_amount",
+        "txn_account_ts",
+        "led_posted"
+      ],
+      "selected_detail": [
+        {
+          "id": "txn_ts",
+          "label": "transactions(ts)"
+        },
+        {
+          "id": "txn_amount",
+          "label": "transactions(amount)"
+        },
+        {
+          "id": "txn_account_ts",
+          "label": "transactions(account_id, ts)"
+        },
+        {
+          "id": "led_posted",
+          "label": "ledger_entries(posted_at)"
+        }
+      ],
+      "size_mb": 249.6,
+      "benefit": 1259611.4,
+      "pct_of_optimum": 100.0,
+      "residual_cost": 277904.7
+    }
+  },
+  "qaoa": {
+    "n_qubits": 15,
+    "reps": 4,
+    "n_evals": 474,
+    "optimal_value": -1.6864,
+    "matches_exact": true,
+    "energies": [
+      3.036,
+      3.5224,
+      5.2092,
+      1.0838,
+      -0.6728,
+      2.5942,
+      -1.1719,
+      -1.1813,
+      -0.4842,
+      -1.2297,
+      -0.9521,
+      -1.2299,
+      -1.2339,
+      -1.2145,
+      -1.2301,
+      -1.2435,
+      -1.2439,
+      -1.2337,
+      -1.2466,
+      -1.2481,
+      -1.2487,
+      -1.2473,
+      -1.2485,
+      -1.2487,
+      -1.2487,
+      -1.2488,
+      -1.2488,
+      -1.2487,
+      -1.2488,
+      -1.2488,
+      -1.2488,
+      -1.2488,
+      -1.2488,
+      -1.2488,
+      -1.2489,
+      -1.2489,
+      -1.2489,
+      -1.2489,
+      -1.2489,
+      -1.2489,
+      -1.2489,
+      -1.2489,
+      -1.2489,
+      -1.2489,
+      -1.2489,
+      -1.2489,
+      -1.2489,
+      -1.2489,
+      -1.2489,
+      -1.2489,
+      -1.2489,
+      -1.2489,
+      -1.2489,
+      -1.2489,
+      -0.6706,
+      -0.8311,
+      -0.7753,
+      -1.0669,
+      -0.8414,
+      -1.3009,
+      -1.3567,
+      -1.3058,
+      -1.242,
+      -1.1964,
+      -1.2753,
+      -1.237,
+      -1.3551,
+      -1.3316,
+      -1.3558,
+      -1.3597,
+      -1.3644,
+      -1.3666,
+      -1.368,
+      -1.3704,
+      -1.366,
+      -1.3669,
+      -1.3737,
+      -1.3695,
+      -1.3716,
+      -1.3729,
+      -1.3736,
+      -1.3745,
+      -1.3747,
+      -1.375,
+      -1.3746,
+      -1.3748,
+      -1.3753,
+      -1.3757,
+      -1.3761,
+      -1.3762,
+      -1.3762,
+      -1.3763,
+      -1.3765,
+      -1.3767,
+      -1.3772,
+      -1.3778,
+      -1.3785,
+      -1.3787,
+      -1.3795,
+      -1.3807,
+      -1.3825,
+      -1.3858,
+      -1.3829,
+      -1.3869,
+      -1.388,
+      -1.387,
+      -1.3875,
+      -1.3884,
+      -1.3886,
+      -1.3885,
+      -1.3886,
+      -1.3888,
+      -1.389,
+      -1.3893,
+      -1.3895,
+      -1.3893,
+      -1.3895,
+      -1.3897,
+      -1.3898,
+      -1.3902,
+      -1.3908,
+      -1.3919,
+      -1.3934,
+      -1.3944,
+      -1.3961,
+      -1.398,
+      -1.3977,
+      -1.3982,
+      -1.397,
+      -1.3985,
+      -1.399,
+      -1.3987,
+      -1.3989,
+      -1.3992,
+      -1.3994,
+      -1.3994,
+      -1.3995,
+      -1.3992,
+      -1.3996,
+      -1.3998,
+      -1.4001,
+      -1.4005,
+      -1.4011,
+      -1.4017,
+      -1.4027,
+      -1.4022,
+      -1.4026,
+      -1.4029,
+      -1.402,
+      -1.4028,
+      -1.4032,
+      -1.4037,
+      -1.4047,
+      -1.4062,
+      -1.4076,
+      -1.4049,
+      -1.4073,
+      -1.4081,
+      -1.4069,
+      -1.4082,
+      -1.4083,
+      -1.4081,
+      -1.4085,
+      -1.4089,
+      -1.4094,
+      -1.4091,
+      -1.4096,
+      -1.4099,
+      -1.4103,
+      -1.4106,
+      -1.4104,
+      -1.4104,
+      -1.4108,
+      -1.4109,
+      -1.4111,
+      -1.411,
+      -1.411,
+      -1.4112,
+      -1.4115,
+      -1.4119,
+      -1.4122,
+      -1.4109,
+      -1.4118,
+      -1.4124,
+      -1.4126,
+      -1.4124,
+      -1.4126,
+      -1.4128,
+      -1.4129,
+      -1.4131,
+      -1.4135,
+      -1.4139,
+      -1.4139,
+      -1.4142,
+      -1.2526,
+      -1.0855,
+      -1.2789,
+      -0.5252,
+      -1.3248,
+      -1.3807,
+      -1.3489,
+      -1.0072,
+      -1.137,
+      -1.3605,
+      -1.4007,
+      -1.4171,
+      -1.4307,
+      -1.4337,
+      -1.4444,
+      -1.444,
+      -1.4444,
+      -1.4533,
+      -1.4606,
+      -1.463,
+      -1.4673,
+      -1.4717,
+      -1.4707,
+      -1.4711,
+      -1.4743,
+      -1.4774,
+      -1.4789,
+      -1.4734,
+      -1.479,
+      -1.484,
+      -1.4876,
+      -1.4911,
+      -1.4947,
+      -1.4928,
+      -1.4938,
+      -1.497,
+      -1.4998,
+      -1.4985,
+      -1.4999,
+      -1.5009,
+      -1.5028,
+      -1.5022,
+      -1.5036,
+      -1.5022,
+      -1.5069,
+      -1.5089,
+      -1.5102,
+      -1.5115,
+      -1.5106,
+      -1.5138,
+      -1.5166,
+      -1.5148,
+      -1.5174,
+      -1.516,
+      -1.5174,
+      -1.5169,
+      -1.5177,
+      -1.518,
+      -1.5183,
+      -1.5186,
+      -1.5188,
+      -1.5187,
+      -1.5186,
+      -1.5191,
+      -1.5197,
+      -1.5209,
+      -1.5228,
+      -1.524,
+      -1.5255,
+      -1.5265,
+      -1.5195,
+      -1.5281,
+      -1.5304,
+      -1.53,
+      -1.5305,
+      -1.5308,
+      -1.5311,
+      -1.5313,
+      -1.5317,
+      -1.532,
+      -1.5325,
+      -1.533,
+      -1.5329,
+      -1.5328,
+      -1.5329,
+      -1.533,
+      -1.5332,
+      -1.5337,
+      -1.5342,
+      -1.5345,
+      -1.5346,
+      -1.5347,
+      -1.5343,
+      -1.5346,
+      -1.5348,
+      -1.535,
+      -1.5355,
+      -1.5362,
+      -1.5372,
+      -1.5378,
+      -1.5381,
+      -1.5379,
+      -1.5387,
+      -1.5397,
+      -1.5403,
+      -1.5407,
+      -1.5405,
+      -1.5408,
+      -1.5409,
+      -1.5408,
+      -1.5409,
+      -1.5411,
+      -1.5415,
+      -1.5421,
+      -1.5426,
+      -1.5441,
+      -1.5461,
+      -1.547,
+      -1.5488,
+      -1.5516,
+      -1.5482,
+      -1.5505,
+      -1.5519,
+      -1.5494,
+      -1.5524,
+      -1.5529,
+      -1.5538,
+      -1.5546,
+      -1.5556,
+      -1.5566,
+      -1.5571,
+      -1.5579,
+      -1.5556,
+      -1.5575,
+      -1.5586,
+      -1.5594,
+      -1.5598,
+      -1.5601,
+      -1.5607,
+      -1.5612,
+      -1.5307,
+      -1.5491,
+      -1.6074,
+      -1.4467,
+      -1.1541,
+      -1.5425,
+      -1.5374,
+      -1.5814,
+      -1.5757,
+      -1.228,
+      -1.4611,
+      -1.6224,
+      -1.6076,
+      -1.6211,
+      -1.6289,
+      -1.6361,
+      -1.6387,
+      -1.6423,
+      -1.6429,
+      -1.6427,
+      -1.6451,
+      -1.6476,
+      -1.6404,
+      -1.649,
+      -1.6552,
+      -1.6571,
+      -1.6607,
+      -1.6632,
+      -1.661,
+      -1.664,
+      -1.6651,
+      -1.668,
+      -1.6686,
+      -1.6676,
+      -1.6697,
+      -1.6677,
+      -1.6679,
+      -1.6697,
+      -1.6686,
+      -1.6711,
+      -1.6668,
+      -1.6715,
+      -1.6678,
+      -1.6711,
+      -1.6724,
+      -1.6687,
+      -1.6726,
+      -1.6702,
+      -1.6699,
+      -1.6751,
+      -1.6771,
+      -1.676,
+      -1.6776,
+      -1.6767,
+      -1.6773,
+      -1.6761,
+      -1.6782,
+      -1.676,
+      -1.6781,
+      -1.6781,
+      -1.6782,
+      -1.6783,
+      -1.6785,
+      -1.6786,
+      -1.6786,
+      -1.6786,
+      -1.6787,
+      -1.6788,
+      -1.6789,
+      -1.6789,
+      -1.679,
+      -1.6791,
+      -1.6791,
+      -1.679,
+      -1.679,
+      -1.6793,
+      -1.6795,
+      -1.68,
+      -1.6804,
+      -1.6808,
+      -1.6809,
+      -1.6813,
+      -1.6814,
+      -1.6815,
+      -1.6816,
+      -1.6817,
+      -1.6818,
+      -1.6818,
+      -1.6819,
+      -1.682,
+      -1.6821,
+      -1.6823,
+      -1.6825,
+      -1.6827,
+      -1.6829,
+      -1.6831,
+      -1.6833,
+      -1.6834,
+      -1.6836,
+      -1.6838,
+      -1.6837,
+      -1.6838,
+      -1.6838,
+      -1.6839,
+      -1.6839,
+      -1.684,
+      -1.6842,
+      -1.6843,
+      -1.6844,
+      -1.6846,
+      -1.6844,
+      -1.6846,
+      -1.6848,
+      -1.6849,
+      -1.6849,
+      -1.6849,
+      -1.685,
+      -1.6849,
+      -1.6849,
+      -1.6851,
+      -1.6851,
+      -1.6852,
+      -1.6853,
+      -1.6853,
+      -1.6853,
+      -1.6854,
+      -1.6855,
+      -1.6855,
+      -1.6856,
+      -1.6857,
+      -1.686,
+      -1.6862,
+      -1.6861,
+      -1.6862,
+      -1.6863,
+      -1.6862,
+      -1.6863,
+      -1.6864,
+      -1.6864,
+      -1.6864
+    ],
+    "prob_snapshots": [
+      {
+        "eval": 0,
+        "reps": 1,
+        "energy": 3.036005799510546,
+        "top": [
+          {
+            "labels": [
+              "txn_account",
+              "txn_merchant",
+              "txn_ts",
+              "txn_channel",
+              "txn_flagged",
+              "txn_amount",
+              "txn_account_ts",
+              "txn_merchant_ts",
+              "txn_status_ts",
+              "txn_channel_amount",
+              "txn_flagged_amount",
+              "led_account",
+              "led_posted",
+              "led_account_posted",
+              "mer_category"
+            ],
+            "prob": 0.0018604586507007588,
+            "size_mb": 882.5,
+            "benefit": 1352017.7799999998,
+            "feasible": false
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_merchant",
+              "txn_ts",
+              "txn_channel",
+              "txn_flagged",
+              "txn_amount",
+              "txn_account_ts",
+              "txn_merchant_ts",
+              "txn_status_ts",
+              "txn_channel_amount",
+              "txn_flagged_amount",
+              "led_account",
+              "led_posted",
+              "led_account_posted"
+            ],
+            "prob": 0.0018587024879736578,
+            "size_mb": 882.5,
+            "benefit": 1352017.7799999998,
+            "feasible": false
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_merchant",
+              "txn_ts",
+              "txn_channel",
+              "txn_amount",
+              "txn_account_ts",
+              "txn_merchant_ts",
+              "txn_status_ts",
+              "txn_channel_amount",
+              "txn_flagged_amount",
+              "led_account",
+              "led_posted",
+              "led_account_posted",
+              "mer_category"
+            ],
+            "prob": 0.00098557893574779,
+            "size_mb": 844.8,
+            "benefit": 1352017.7799999998,
+            "feasible": false
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_merchant",
+              "txn_ts",
+              "txn_channel",
+              "txn_amount",
+              "txn_account_ts",
+              "txn_merchant_ts",
+              "txn_status_ts",
+              "txn_channel_amount",
+              "txn_flagged_amount",
+              "led_account",
+              "led_posted",
+              "led_account_posted"
+            ],
+            "prob": 0.0009847093709759115,
+            "size_mb": 844.7,
+            "benefit": 1352017.7799999998,
+            "feasible": false
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_merchant",
+              "txn_ts",
+              "txn_flagged",
+              "txn_amount",
+              "txn_account_ts",
+              "txn_merchant_ts",
+              "txn_status_ts",
+              "txn_channel_amount",
+              "txn_flagged_amount",
+              "led_account",
+              "led_posted",
+              "led_account_posted",
+              "mer_category"
+            ],
+            "prob": 0.0007576731761023819,
+            "size_mb": 830.3,
+            "benefit": 1352017.7799999998,
+            "feasible": false
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_merchant",
+              "txn_ts",
+              "txn_flagged",
+              "txn_amount",
+              "txn_account_ts",
+              "txn_merchant_ts",
+              "txn_status_ts",
+              "txn_channel_amount",
+              "txn_flagged_amount",
+              "led_account",
+              "led_posted",
+              "led_account_posted"
+            ],
+            "prob": 0.0007570258202282019,
+            "size_mb": 830.2,
+            "benefit": 1352017.7799999998,
+            "feasible": false
+          }
+        ]
+      },
+      {
+        "eval": 6,
+        "reps": 1,
+        "energy": -1.1719437482567505,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0003972719743275861,
+            "size_mb": 133.5,
+            "benefit": 927650.67,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0003972010801314199,
+            "size_mb": 133.6,
+            "benefit": 927707.22,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.00038643633351813773,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0003863044181764472,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account_posted"
+            ],
+            "prob": 0.00038223927836160675,
+            "size_mb": 214.8,
+            "benefit": 1111307.9100000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account_posted",
+              "mer_category"
+            ],
+            "prob": 0.0003820732343027899,
+            "size_mb": 214.9,
+            "benefit": 1111364.46,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 12,
+        "reps": 1,
+        "energy": -1.2339431605810762,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0006147437023301896,
+            "size_mb": 133.5,
+            "benefit": 927650.67,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0006145921895247463,
+            "size_mb": 133.6,
+            "benefit": 927707.22,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account_posted"
+            ],
+            "prob": 0.0006145771723612704,
+            "size_mb": 214.8,
+            "benefit": 1111307.9100000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account_posted",
+              "mer_category"
+            ],
+            "prob": 0.0006142059795473239,
+            "size_mb": 214.9,
+            "benefit": 1111364.46,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.000598715291495501,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.000598435581889284,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 18,
+        "reps": 1,
+        "energy": -1.246625413239337,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account_posted"
+            ],
+            "prob": 0.000481241115839148,
+            "size_mb": 214.8,
+            "benefit": 1111307.9100000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account_posted",
+              "mer_category"
+            ],
+            "prob": 0.00048106545921753284,
+            "size_mb": 214.9,
+            "benefit": 1111364.46,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.00045321378021034555,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.00045310530894248095,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account_ts",
+              "txn_flagged_amount",
+              "led_account_posted"
+            ],
+            "prob": 0.00043734323683296104,
+            "size_mb": 217.7,
+            "benefit": 1018422.06,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account_ts",
+              "txn_flagged_amount",
+              "led_account_posted",
+              "mer_category"
+            ],
+            "prob": 0.00043717298103270304,
+            "size_mb": 217.8,
+            "benefit": 1018478.61,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 24,
+        "reps": 1,
+        "energy": -1.248709453849203,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account_posted"
+            ],
+            "prob": 0.0004927094817891739,
+            "size_mb": 214.8,
+            "benefit": 1111307.9100000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account_posted",
+              "mer_category"
+            ],
+            "prob": 0.000492509611937993,
+            "size_mb": 214.9,
+            "benefit": 1111364.46,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0004692485482745745,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.00046911619750111756,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.00045258844274536627,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.00045245925766297895,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 30,
+        "reps": 1,
+        "energy": -1.2487864138607814,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account_posted"
+            ],
+            "prob": 0.0004915150736394773,
+            "size_mb": 214.8,
+            "benefit": 1111307.9100000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account_posted",
+              "mer_category"
+            ],
+            "prob": 0.0004913158772118127,
+            "size_mb": 214.9,
+            "benefit": 1111364.46,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0004683108247748584,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.00046817877211588,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.0004516963733982043,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.00045156747930382617,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 36,
+        "reps": 1,
+        "energy": -1.2489305349344462,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account_posted"
+            ],
+            "prob": 0.000483117195751617,
+            "size_mb": 214.8,
+            "benefit": 1111307.9100000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account_posted",
+              "mer_category"
+            ],
+            "prob": 0.0004829263588576431,
+            "size_mb": 214.9,
+            "benefit": 1111364.46,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.00046025543962422447,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0004601298254541185,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.00044396942606086953,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.00044384679618712656,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 42,
+        "reps": 1,
+        "energy": -1.248933084038096,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account_posted"
+            ],
+            "prob": 0.00048630678276401966,
+            "size_mb": 214.8,
+            "benefit": 1111307.9100000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account_posted",
+              "mer_category"
+            ],
+            "prob": 0.0004861108545759297,
+            "size_mb": 214.9,
+            "benefit": 1111364.46,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.00046407047917808596,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0004639401430079478,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.00044765617014672874,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.00044752894930765873,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 48,
+        "reps": 1,
+        "energy": -1.2489413945349168,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account_posted"
+            ],
+            "prob": 0.00048359056679437304,
+            "size_mb": 214.8,
+            "benefit": 1111307.9100000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account_posted",
+              "mer_category"
+            ],
+            "prob": 0.00048339835712871485,
+            "size_mb": 214.9,
+            "benefit": 1111364.46,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0004610625436930264,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.000460935499026051,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.0004447564359757995,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.0004446324158139339,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 54,
+        "reps": 2,
+        "energy": -0.6706442554568667,
+        "top": [
+          {
+            "labels": [],
+            "prob": 0.02523092618965002,
+            "size_mb": 0.0,
+            "benefit": 0.0,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "mer_category"
+            ],
+            "prob": 0.025186022089403973,
+            "size_mb": 0.1,
+            "benefit": 56.549999999995634,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account_ts"
+            ],
+            "prob": 0.01194202882394025,
+            "size_mb": 81.3,
+            "benefit": 556209.61,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.011919033329926325,
+            "size_mb": 81.3,
+            "benefit": 556266.1599999999,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account"
+            ],
+            "prob": 0.010897898390632087,
+            "size_mb": 58.1,
+            "benefit": 465914.9,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "mer_category"
+            ],
+            "prob": 0.010879491478693815,
+            "size_mb": 58.1,
+            "benefit": 465971.45,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 60,
+        "reps": 2,
+        "energy": -1.3566654654070818,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0007118751150832309,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.000711752781331357,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0006771357830257128,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0006769020622172771,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.0006701061898143491,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.0006699925186987971,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 66,
+        "reps": 2,
+        "energy": -1.35505509557072,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0006769636052625989,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0006768796880133678,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.000658740857070681,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0006585432587022278,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.0006370287393092847,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.0006369515648805826,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 72,
+        "reps": 2,
+        "energy": -1.3679978652025113,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0007212494620655567,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0007211510578318558,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0007130365570401343,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0007128188621419367,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.0006752691760689281,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.0006751795736099279,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 78,
+        "reps": 2,
+        "energy": -1.3715902549404588,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0008247491384680617,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0008245386118618405,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0008107794133445449,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0008104358594620379,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount"
+            ],
+            "prob": 0.0007802060789366029,
+            "size_mb": 168.4,
+            "benefit": 994874.95,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "mer_category"
+            ],
+            "prob": 0.0007800047202328131,
+            "size_mb": 168.4,
+            "benefit": 994874.95,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 84,
+        "reps": 2,
+        "energy": -1.3745649766639263,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0007838905768340918,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0007837408142586723,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0007765727854107268,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0007762969465491698,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount"
+            ],
+            "prob": 0.0007432850110019668,
+            "size_mb": 168.4,
+            "benefit": 994874.95,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "mer_category"
+            ],
+            "prob": 0.000743146376708893,
+            "size_mb": 168.4,
+            "benefit": 994874.95,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 90,
+        "reps": 2,
+        "energy": -1.376190752965692,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0008281761552603872,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.000827996702634712,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0008261804644120765,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0008258566836139164,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount"
+            ],
+            "prob": 0.0007928894026456488,
+            "size_mb": 168.4,
+            "benefit": 994874.95,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "mer_category"
+            ],
+            "prob": 0.0007927141326291254,
+            "size_mb": 168.4,
+            "benefit": 994874.95,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 96,
+        "reps": 2,
+        "energy": -1.378457364765333,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0008301507961849197,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0008299743823378122,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0008212289141307323,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0008209154528616592,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount"
+            ],
+            "prob": 0.0007886887978212204,
+            "size_mb": 168.4,
+            "benefit": 994874.95,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "mer_category"
+            ],
+            "prob": 0.0007885226132159824,
+            "size_mb": 168.4,
+            "benefit": 994874.95,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 102,
+        "reps": 2,
+        "energy": -1.3828865349749235,
+        "top": [
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0008484434915145312,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0008482004280636814,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0008416302304205751,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0008415501958859738,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount"
+            ],
+            "prob": 0.0007979967720337323,
+            "size_mb": 168.4,
+            "benefit": 994874.95,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "mer_category"
+            ],
+            "prob": 0.0007979281759601447,
+            "size_mb": 168.4,
+            "benefit": 994874.95,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 108,
+        "reps": 2,
+        "energy": -1.3885626543769725,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0009552660468523489,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0009549989282869141,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0009353628839684629,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0009349552131315116,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount"
+            ],
+            "prob": 0.0009228658199009064,
+            "size_mb": 168.4,
+            "benefit": 994874.95,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "mer_category"
+            ],
+            "prob": 0.0009226101531883351,
+            "size_mb": 168.4,
+            "benefit": 994874.95,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 114,
+        "reps": 2,
+        "energy": -1.3894626761264832,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0009701612131206524,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0009698938851725157,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.000955100744827157,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0009546792934661185,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount"
+            ],
+            "prob": 0.0009391916391022321,
+            "size_mb": 168.4,
+            "benefit": 994874.95,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "mer_category"
+            ],
+            "prob": 0.0009389309672834908,
+            "size_mb": 168.4,
+            "benefit": 994874.95,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 120,
+        "reps": 2,
+        "energy": -1.3907618094510155,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0009692103941875574,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0009689597921098521,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0009561396413751074,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0009557319702515242,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount"
+            ],
+            "prob": 0.0009374497351142568,
+            "size_mb": 168.4,
+            "benefit": 994874.95,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "mer_category"
+            ],
+            "prob": 0.000937206690542907,
+            "size_mb": 168.4,
+            "benefit": 994874.95,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 126,
+        "reps": 2,
+        "energy": -1.3976748835742443,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0011425136050928722,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0011420678882493318,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.001104799959144906,
+            "size_mb": 168.4,
+            "benefit": 1019867.8800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0011045784543961986,
+            "size_mb": 168.4,
+            "benefit": 1019924.4300000002,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.0010500169602082469,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.0010496108146700349,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 132,
+        "reps": 2,
+        "energy": -1.3988979280710776,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0011282259644500045,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0011278353826358635,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.001084605646110904,
+            "size_mb": 168.4,
+            "benefit": 1019867.8800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.001084441240110569,
+            "size_mb": 168.4,
+            "benefit": 1019924.4300000002,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.00106749207467546,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.001066958015610415,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 138,
+        "reps": 2,
+        "energy": -1.3995904165379889,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.001106513547748447,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.001106163092088675,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0010622888986710245,
+            "size_mb": 168.4,
+            "benefit": 1019867.8800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0010621607550832341,
+            "size_mb": 168.4,
+            "benefit": 1019924.4300000002,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0010555716055037536,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0010550754065275338,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 144,
+        "reps": 2,
+        "energy": -1.402673212781763,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0011696946988788742,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0011692903814848736,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.00112568112775265,
+            "size_mb": 168.4,
+            "benefit": 1019867.8800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.001125515677788193,
+            "size_mb": 168.4,
+            "benefit": 1019924.4300000002,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0011017722622399474,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0011012290229158702,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 150,
+        "reps": 2,
+        "energy": -1.4031667065905193,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0011954841402205454,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0011950453592427966,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0011497473037176042,
+            "size_mb": 168.4,
+            "benefit": 1019867.8800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.001149555825356074,
+            "size_mb": 168.4,
+            "benefit": 1019924.4300000002,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0011113916235848626,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0011108220843864198,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 156,
+        "reps": 2,
+        "energy": -1.4073385253020296,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0012600202554216263,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0012595506810673242,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0012040852607312544,
+            "size_mb": 168.4,
+            "benefit": 1019867.8800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.001203894790585984,
+            "size_mb": 168.4,
+            "benefit": 1019924.4300000002,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.0011521220855849163,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.001151697322598336,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 162,
+        "reps": 2,
+        "energy": -1.4084957930913964,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0013554415939998406,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0013548495956773067,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0012951464816325878,
+            "size_mb": 168.4,
+            "benefit": 1019867.8800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0012948633031911949,
+            "size_mb": 168.4,
+            "benefit": 1019924.4300000002,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.0012374838181908334,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.00123694699036319,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 168,
+        "reps": 2,
+        "energy": -1.4102638724118357,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0013573982286836767,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0013568214424753578,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0013031944425605916,
+            "size_mb": 168.4,
+            "benefit": 1019867.8800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0013029207027350027,
+            "size_mb": 168.4,
+            "benefit": 1019924.4300000002,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.0012362155117713431,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.0012356948049211504,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 174,
+        "reps": 2,
+        "energy": -1.4110604824062767,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0013624608629657822,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0013618808023572748,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0013097656569199085,
+            "size_mb": 168.4,
+            "benefit": 1019867.8800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.001309488881656279,
+            "size_mb": 168.4,
+            "benefit": 1019924.4300000002,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0012458360794038324,
+            "size_mb": 133.6,
+            "benefit": 927707.22,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0012456498197237758,
+            "size_mb": 133.5,
+            "benefit": 927650.67,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 180,
+        "reps": 2,
+        "energy": -1.4122051454714948,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0013470121103932528,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0013465174499446876,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0012864867772157923,
+            "size_mb": 168.4,
+            "benefit": 1019867.8800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.001286302532002316,
+            "size_mb": 168.4,
+            "benefit": 1019924.4300000002,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0012418580270812092,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0012412160279995595,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 186,
+        "reps": 2,
+        "energy": -1.4126216449266293,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0013513885390337107,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0013508837212052138,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0012951853684748408,
+            "size_mb": 168.4,
+            "benefit": 1019867.8800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0012949866744746445,
+            "size_mb": 168.4,
+            "benefit": 1019924.4300000002,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount"
+            ],
+            "prob": 0.001247413158105993,
+            "size_mb": 168.4,
+            "benefit": 994874.95,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "mer_category"
+            ],
+            "prob": 0.0012469873494798404,
+            "size_mb": 168.4,
+            "benefit": 994874.95,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 192,
+        "reps": 2,
+        "energy": -1.4139080919613451,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.001411508844248392,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.001410900887750858,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0013606239623670806,
+            "size_mb": 168.4,
+            "benefit": 1019867.8800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.001360331977338375,
+            "size_mb": 168.4,
+            "benefit": 1019924.4300000002,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.001319114266805191,
+            "size_mb": 133.6,
+            "benefit": 927707.22,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0013189648859057836,
+            "size_mb": 133.5,
+            "benefit": 927650.67,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 198,
+        "reps": 3,
+        "energy": -1.3248101575992848,
+        "top": [
+          {
+            "labels": [
+              "txn_account_ts"
+            ],
+            "prob": 0.0012285630738241339,
+            "size_mb": 81.3,
+            "benefit": 556209.61,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0012269476994870147,
+            "size_mb": 81.3,
+            "benefit": 556266.1599999999,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0010455614494229103,
+            "size_mb": 249.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0010445496018138634,
+            "size_mb": 249.7,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_flagged",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0010112212978897383,
+            "size_mb": 229.3,
+            "benefit": 971505.36,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_flagged",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0010109798471560358,
+            "size_mb": 229.4,
+            "benefit": 971561.9099999999,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 204,
+        "reps": 3,
+        "energy": -1.4006855887626781,
+        "top": [
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0009013860611677504,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0009008066600444365,
+            "size_mb": 249.7,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.000886553581668212,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.000886221541858877,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0008470612306140139,
+            "size_mb": 249.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0008465736257874048,
+            "size_mb": 249.7,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 210,
+        "reps": 3,
+        "energy": -1.4444006600014307,
+        "top": [
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0009315276361743014,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.000930991212095215,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0009013078925704849,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0009005981792747883,
+            "size_mb": 249.7,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_account"
+            ],
+            "prob": 0.0008312511714992085,
+            "size_mb": 226.4,
+            "benefit": 1143391.11,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.0008307765671099311,
+            "size_mb": 226.5,
+            "benefit": 1143391.11,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 216,
+        "reps": 3,
+        "energy": -1.4707342380187391,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.001300160632722014,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0012996505841754947,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0012479833353587497,
+            "size_mb": 133.5,
+            "benefit": 927650.67,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0012477891215052028,
+            "size_mb": 133.6,
+            "benefit": 927707.22,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0012105218595863639,
+            "size_mb": 168.4,
+            "benefit": 1019867.8800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0012102894582925068,
+            "size_mb": 168.4,
+            "benefit": 1019924.4300000002,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 222,
+        "reps": 3,
+        "energy": -1.478978488048628,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0014686405650285986,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0014679956545148108,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0013355462389672867,
+            "size_mb": 168.4,
+            "benefit": 1019867.8800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0013352813049650897,
+            "size_mb": 168.4,
+            "benefit": 1019924.4300000002,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.00130562747432512,
+            "size_mb": 133.5,
+            "benefit": 927650.67,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0013055514676890687,
+            "size_mb": 133.6,
+            "benefit": 927707.22,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 228,
+        "reps": 3,
+        "energy": -1.493754060309041,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0013974758961754082,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0013970486880712971,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0012639531383594222,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0012633552283269226,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.0012435972384876668,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.001243220235916246,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 234,
+        "reps": 3,
+        "energy": -1.5027799025723352,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0013862188323040803,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0013858244481770679,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0012574164518042654,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0012568173539613283,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.001238287319431529,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.0012379352868553957,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 240,
+        "reps": 3,
+        "energy": -1.5102253716189245,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0015885075792073256,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0015879728428055747,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.0014215877050136859,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.001421104560824149,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0013867454202489706,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.001385964053672569,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 246,
+        "reps": 3,
+        "energy": -1.5174048127975677,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.001592422775764394,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.001591938615725379,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.001433882994204148,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.0014334423999146043,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.001390131387886509,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0013893718605183932,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 252,
+        "reps": 3,
+        "energy": -1.5183440588794834,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0016587063256835563,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0016581533420444506,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.001491665512430987,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.0014911624193624364,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0014308934785562811,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0014300692847574415,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 258,
+        "reps": 3,
+        "energy": -1.5197092847996387,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.001632706140020818,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0016322054751341131,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.0014679817599670716,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.0014675265845030406,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.001423513799871573,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.001422727205074078,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 264,
+        "reps": 3,
+        "energy": -1.5194803954146017,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0014251179470894401,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0014249048969523703,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0013285409777774285,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0013279958631409777,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.0012880084010645197,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.0012878158974870251,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 270,
+        "reps": 3,
+        "energy": -1.5310973841367292,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0015194501928311138,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0015192589386957712,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0014097452423895524,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.001409174107796409,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.0013665253093609405,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.0013663528254933052,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 276,
+        "reps": 3,
+        "energy": -1.5328787463127849,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.001581956396999741,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0015817336043063709,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0014473040727154632,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0014466884488337209,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.001421855467761113,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.001421653527163759,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 282,
+        "reps": 3,
+        "energy": -1.5341618802495391,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0015721480585654043,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0015719262007929855,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.001432911846311758,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.001432307665859521,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.0014158946657027282,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.0014156935944452434,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 288,
+        "reps": 3,
+        "energy": -1.5347510148882073,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0015510313461766386,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0015508381183406243,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0014223872912408784,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.001421811352290586,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.0013976086621104692,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.0013974340601490142,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 294,
+        "reps": 3,
+        "energy": -1.5381145841733272,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0017362786419112554,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0017359358942376833,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.001557994642076849,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.001557682974937083,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0015453667705774424,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0015446190034096427,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 300,
+        "reps": 3,
+        "energy": -1.5405479007208114,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0016771967224400578,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0016769322473383494,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.0015092504455051024,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.0015090106694870713,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0015034787312795802,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0015028172963013331,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 306,
+        "reps": 3,
+        "energy": -1.54145001663712,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0017121581260225783,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0017118758434963082,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.0015395196439002316,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.0015392634557056196,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0015263915363995647,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.0015257047064228427,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 312,
+        "reps": 3,
+        "energy": -1.548781325143801,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0017924916150770282,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0017922446323336712,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts"
+            ],
+            "prob": 0.0016051674514218418,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "mer_category"
+            ],
+            "prob": 0.001604497869109256,
+            "size_mb": 191.6,
+            "benefit": 1077099.45,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.0016044230683972143,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.0016042020380846597,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 318,
+        "reps": 3,
+        "energy": -1.5523923085098397,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0023042157009440616,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0023032196401470283,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.0020488418188974165,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.002047943610549456,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.001963174372629184,
+            "size_mb": 168.4,
+            "benefit": 1019867.8800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.001963102282853063,
+            "size_mb": 168.4,
+            "benefit": 1019924.4300000002,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 324,
+        "reps": 3,
+        "energy": -1.5571022632882887,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.002390425457991491,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.002389382526218534,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.002118095303929665,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.002117159010142801,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0020360941692914372,
+            "size_mb": 168.4,
+            "benefit": 1019867.8800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.002036031495431631,
+            "size_mb": 168.4,
+            "benefit": 1019924.4300000002,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 330,
+        "reps": 3,
+        "energy": -1.5598229615029842,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0024267961297778267,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.00242577220585364,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.002144531774238295,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account",
+              "mer_category"
+            ],
+            "prob": 0.0021436145556815475,
+            "size_mb": 191.6,
+            "benefit": 1076223.3800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0020462492796062747,
+            "size_mb": 168.4,
+            "benefit": 1019867.8800000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.002046247111634295,
+            "size_mb": 168.4,
+            "benefit": 1019924.4300000002,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 336,
+        "reps": 4,
+        "energy": -1.6074069362673622,
+        "top": [
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0020302505173756583,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0020280211279243973,
+            "size_mb": 249.7,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.001915297818149168,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0019138277994907894,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.001725979917858968,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0017259704180222595,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 342,
+        "reps": 4,
+        "energy": -1.5756671469476575,
+        "top": [
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0018267725840499993,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0018248722265087243,
+            "size_mb": 249.7,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0017077292385137687,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.001706453547098508,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0015794226881555324,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0015793838959855375,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 348,
+        "reps": 4,
+        "energy": -1.6289076941049325,
+        "top": [
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0020595453697901654,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0020572696403576562,
+            "size_mb": 249.7,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0019735907017906155,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0019720673576370455,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0017738187418658497,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0017737215813115254,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 354,
+        "reps": 4,
+        "energy": -1.6450905821365158,
+        "top": [
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0023010535766770763,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.002299019243242158,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0022970513041072546,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0022967478962884914,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.002295446807346763,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0022926373571922083,
+            "size_mb": 249.7,
+            "benefit": 1259611.37,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 360,
+        "reps": 4,
+        "energy": -1.6607007560793094,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.002659299167295756,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0026586832527003947,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0024352930578546645,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.002432912442077671,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.002378652645578863,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0023755220175982533,
+            "size_mb": 249.7,
+            "benefit": 1259611.37,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 366,
+        "reps": 4,
+        "energy": -1.6686315359974757,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.00264909118464729,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0026485899332880335,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0025804036373175817,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.00257787422949119,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.002529763802575695,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.002526439826195594,
+            "size_mb": 249.7,
+            "benefit": 1259611.37,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 372,
+        "reps": 4,
+        "energy": -1.6686309460223712,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0027049028223707036,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.002704215392961534,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0024364280729794524,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0024339963224083846,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0023775106134449643,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.002374368013535279,
+            "size_mb": 249.7,
+            "benefit": 1259611.37,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 378,
+        "reps": 4,
+        "energy": -1.6723776845421519,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0030939130989232877,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.003092852122621679,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0027326562720853317,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0027297338962249027,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0026155850789473007,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_account"
+            ],
+            "prob": 0.002614653942131033,
+            "size_mb": 191.6,
+            "benefit": 1076166.83,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 384,
+        "reps": 4,
+        "energy": -1.6770624425019143,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0028677524217058884,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.002867117571610693,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0027572626013343936,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0027544330422950166,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0026720160929882782,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.002668359451837806,
+            "size_mb": 249.7,
+            "benefit": 1259611.37,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 390,
+        "reps": 4,
+        "energy": -1.6782445878882393,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.002940501491789641,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0029397596343415312,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0027344466707550324,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0027315996946061807,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0026368176562065622,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0026331665237069916,
+            "size_mb": 249.7,
+            "benefit": 1259611.37,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 396,
+        "reps": 4,
+        "energy": -1.678473375380929,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0029255365175700912,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.002924802774647423,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0027215782396562927,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.002718752404239636,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0026279167907529255,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.002624288745152198,
+            "size_mb": 249.7,
+            "benefit": 1259611.37,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 402,
+        "reps": 4,
+        "energy": -1.678888174516401,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.002900749689512516,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0029000748613426507,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.002726393115075172,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.002723576205172037,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.002634377313588391,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0026307481679085595,
+            "size_mb": 249.7,
+            "benefit": 1259611.37,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 408,
+        "reps": 4,
+        "energy": -1.6790371520790057,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0029195865837049555,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.00291888627983787,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0027407223885478043,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.002737881799085979,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0026476020304528856,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.002643948398793361,
+            "size_mb": 249.7,
+            "benefit": 1259611.37,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 414,
+        "reps": 4,
+        "energy": -1.680889049311906,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.002975303570243359,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.002974563830558239,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.002802278889855371,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0027993461082891575,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0027036023166244144,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.002699832915175306,
+            "size_mb": 249.7,
+            "benefit": 1259611.37,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 420,
+        "reps": 4,
+        "energy": -1.6817885406884268,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.002976085608328131,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.002975372899696354,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0028171608595450037,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0028142103612649634,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0027157422650314718,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0027119540857886604,
+            "size_mb": 249.7,
+            "benefit": 1259611.37,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 426,
+        "reps": 4,
+        "energy": -1.6825181078526876,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0029955157775049417,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.00299480132985725,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.00283325036981769,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0028302762054998694,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.002728670602953569,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0027248497006159924,
+            "size_mb": 249.7,
+            "benefit": 1259611.37,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 432,
+        "reps": 4,
+        "energy": -1.6835518461739851,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0030296227113829227,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.003028906273110447,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.002883544655423388,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0028804996570062752,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0027729319941317164,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.002769020311335916,
+            "size_mb": 249.7,
+            "benefit": 1259611.37,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 438,
+        "reps": 4,
+        "energy": -1.6839432010459203,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0030147981346032903,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0030140836277249045,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0028549635160017004,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.002851957285996841,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0027476896497789227,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.002743826537754583,
+            "size_mb": 249.7,
+            "benefit": 1259611.37,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 444,
+        "reps": 4,
+        "energy": -1.6844427582565258,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0030302824333790545,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0030295540191224365,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0028649155159090355,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0028618938716802743,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.002756966372790584,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.002753089694807431,
+            "size_mb": 249.7,
+            "benefit": 1259611.37,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 450,
+        "reps": 4,
+        "energy": -1.684974250013235,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0031086630513024933,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.003107867562591958,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.002912910576749318,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0029097979409152108,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.002789609658966594,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0027856357911850717,
+            "size_mb": 249.7,
+            "benefit": 1259611.37,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 456,
+        "reps": 4,
+        "energy": -1.6852655712809996,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0030885048803344223,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.003087720636357609,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0028973550255636973,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0028942715819317844,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0027799450949920245,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0027760018083450976,
+            "size_mb": 249.7,
+            "benefit": 1259611.37,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 462,
+        "reps": 4,
+        "energy": -1.6855965101711243,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.0030886804406649996,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0030879038351795097,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0029120350306952657,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0029089383802326824,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.002796027218363916,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0027920633662841666,
+            "size_mb": 249.7,
+            "benefit": 1259611.37,
+            "feasible": true
+          }
+        ]
+      },
+      {
+        "eval": 468,
+        "reps": 4,
+        "energy": -1.686319332647067,
+        "top": [
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.003108276225371135,
+            "size_mb": 191.6,
+            "benefit": 1110162.59,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0031074925855871394,
+            "size_mb": 191.6,
+            "benefit": 1110219.1400000001,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted"
+            ],
+            "prob": 0.0029484805192680178,
+            "size_mb": 226.4,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_account",
+              "txn_ts",
+              "txn_amount",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.0029453428906623304,
+            "size_mb": 226.5,
+            "benefit": 1177386.87,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted"
+            ],
+            "prob": 0.002832818514896279,
+            "size_mb": 249.6,
+            "benefit": 1259611.37,
+            "feasible": true
+          },
+          {
+            "labels": [
+              "txn_ts",
+              "txn_amount",
+              "txn_account_ts",
+              "led_posted",
+              "mer_category"
+            ],
+            "prob": 0.002828801041098724,
+            "size_mb": 249.7,
+            "benefit": 1259611.37,
+            "feasible": true
+          }
+        ]
+      }
+    ],
+    "final_distribution": [
+      {
+        "labels": [
+          "txn_amount",
+          "txn_account_ts",
+          "led_posted"
+        ],
+        "prob": 0.0031145573800750526,
+        "size_mb": 191.6,
+        "benefit": 1110162.59,
+        "feasible": true
+      },
+      {
+        "labels": [
+          "txn_amount",
+          "txn_account_ts",
+          "led_posted",
+          "mer_category"
+        ],
+        "prob": 0.003113756329784108,
+        "size_mb": 191.6,
+        "benefit": 1110219.1400000001,
+        "feasible": true
+      },
+      {
+        "labels": [
+          "txn_account",
+          "txn_ts",
+          "txn_amount",
+          "led_posted"
+        ],
+        "prob": 0.0029408562348373322,
+        "size_mb": 226.4,
+        "benefit": 1177386.87,
+        "feasible": true
+      },
+      {
+        "labels": [
+          "txn_account",
+          "txn_ts",
+          "txn_amount",
+          "led_posted",
+          "mer_category"
+        ],
+        "prob": 0.0029377237751840733,
+        "size_mb": 226.5,
+        "benefit": 1177386.87,
+        "feasible": true
+      },
+      {
+        "labels": [
+          "txn_ts",
+          "txn_amount",
+          "txn_account_ts",
+          "led_posted"
+        ],
+        "prob": 0.0028250558387309397,
+        "size_mb": 249.6,
+        "benefit": 1259611.37,
+        "feasible": true
+      },
+      {
+        "labels": [
+          "txn_ts",
+          "txn_amount",
+          "txn_account_ts",
+          "led_posted",
+          "mer_category"
+        ],
+        "prob": 0.0028210479443475283,
+        "size_mb": 249.7,
+        "benefit": 1259611.37,
+        "feasible": true
+      },
+      {
+        "labels": [
+          "txn_amount",
+          "txn_account_ts",
+          "led_account"
+        ],
+        "prob": 0.002618118507501641,
+        "size_mb": 191.6,
+        "benefit": 1076166.83,
+        "feasible": true
+      },
+      {
+        "labels": [
+          "txn_amount",
+          "txn_account_ts",
+          "led_account",
+          "mer_category"
+        ],
+        "prob": 0.0026174498382923704,
+        "size_mb": 191.6,
+        "benefit": 1076223.3800000001,
+        "feasible": true
+      },
+      {
+        "labels": [
+          "txn_account",
+          "txn_ts",
+          "txn_amount",
+          "led_account"
+        ],
+        "prob": 0.0024691438833930116,
+        "size_mb": 226.4,
+        "benefit": 1143391.11,
+        "feasible": true
+      },
+      {
+        "labels": [
+          "txn_account",
+          "txn_ts",
+          "txn_amount",
+          "led_account",
+          "mer_category"
+        ],
+        "prob": 0.002466487566754194,
+        "size_mb": 226.5,
+        "benefit": 1143391.11,
+        "feasible": true
+      },
+      {
+        "labels": [
+          "txn_ts",
+          "txn_amount",
+          "txn_account_ts",
+          "led_account"
+        ],
+        "prob": 0.002363734803953666,
+        "size_mb": 249.6,
+        "benefit": 1225615.6099999999,
+        "feasible": true
+      },
+      {
+        "labels": [
+          "txn_ts",
+          "txn_amount",
+          "txn_account_ts",
+          "led_account",
+          "mer_category"
+        ],
+        "prob": 0.002360339702686589,
+        "size_mb": 249.7,
+        "benefit": 1225615.6099999999,
+        "feasible": true
+      },
+      {
+        "labels": [
+          "txn_amount",
+          "txn_account_ts",
+          "led_account_posted"
+        ],
+        "prob": 0.00235034801849213,
+        "size_mb": 214.8,
+        "benefit": 1111307.9100000001,
+        "feasible": true
+      },
+      {
+        "labels": [
+          "txn_amount",
+          "txn_account_ts",
+          "led_account_posted",
+          "mer_category"
+        ],
+        "prob": 0.0023490753895260143,
+        "size_mb": 214.9,
+        "benefit": 1111364.46,
+        "feasible": true
+      },
+      {
+        "labels": [
+          "txn_flagged",
+          "txn_amount",
+          "txn_account_ts",
+          "led_posted"
+        ],
+        "prob": 0.0022159047914031707,
+        "size_mb": 229.3,
+        "benefit": 1154017.28,
+        "feasible": true
+      },
+      {
+        "labels": [
+          "txn_flagged",
+          "txn_amount",
+          "txn_account_ts",
+          "led_posted",
+          "mer_category"
+        ],
+        "prob": 0.0022140284427490855,
+        "size_mb": 229.4,
+        "benefit": 1154073.83,
+        "feasible": true
+      }
+    ]
+  },
+  "latency": {
+    "baseline": {
+      "per_query_ms": {
+        "account_statement": 67.48,
+        "settlement_by_merchant": 69.77,
+        "fraud_cnp_highvalue": 77.63,
+        "flagged_highvalue": 58.98,
+        "account_ledger": 48.98,
+        "velocity_check": 56.37,
+        "merchant_category_dash": 71.75,
+        "cross_border_scan": 69.15
+      },
+      "total_ms": 520.1,
+      "weighted_ms": 1865.5,
+      "build_ms": 0.0,
+      "applied": []
+    },
+    "greedy": {
+      "per_query_ms": {
+        "account_statement": 15.51,
+        "settlement_by_merchant": 39.17,
+        "fraud_cnp_highvalue": 0.37,
+        "flagged_highvalue": 7.52,
+        "account_ledger": 3.34,
+        "velocity_check": 10.18,
+        "merchant_category_dash": 59.37,
+        "cross_border_scan": 3.52
+      },
+      "total_ms": 139.0,
+      "weighted_ms": 468.5,
+      "build_ms": 2114.3,
+      "applied": [
+        "txn_account",
+        "txn_ts",
+        "txn_amount",
+        "led_posted"
+      ]
+    },
+    "exact/quantum": {
+      "per_query_ms": {
+        "account_statement": 1.88,
+        "settlement_by_merchant": 38.46,
+        "fraud_cnp_highvalue": 0.5,
+        "flagged_highvalue": 7.57,
+        "account_ledger": 3.43,
+        "velocity_check": 0.28,
+        "merchant_category_dash": 58.18,
+        "cross_border_scan": 3.5
+      },
+      "total_ms": 113.8,
+      "weighted_ms": 346.2,
+      "build_ms": 2150.1,
+      "applied": [
+        "txn_ts",
+        "txn_amount",
+        "txn_account_ts",
+        "led_posted"
+      ]
+    }
+  },
+  "headline": {
+    "baseline_weighted_ms": 1865.5,
+    "optimum_weighted_ms": 346.2,
+    "greedy_weighted_ms": 468.5,
+    "speedup": 5.4,
+    "greedy_slowdown": 1.35
+  }
+}
