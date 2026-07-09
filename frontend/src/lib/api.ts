@@ -7,8 +7,19 @@ export const API_BASE =
 // live-demo link works with no backend running.
 const STATIC_ONLY = process.env.NEXT_PUBLIC_STATIC_ONLY === "1";
 
+// Bundled snapshot, with a public GitHub-raw fallback so a backend-free deploy (e.g. Vercel) that doesn't
+// ship the JSON still renders the real demo data.
+const ARTIFACT_FALLBACK_URL =
+  "https://raw.githubusercontent.com/prokiller67-crypto/qurator/main/frontend/public/demo_run.json";
+
 async function fetchStatic(): Promise<Artifact> {
-  const res = await fetch("/demo_run.json", { cache: "force-cache" });
+  try {
+    const res = await fetch("/demo_run.json", { cache: "force-cache" });
+    if (res.ok) return (await res.json()) as Artifact;
+  } catch {
+    /* fall through to the remote copy */
+  }
+  const res = await fetch(ARTIFACT_FALLBACK_URL, { cache: "force-cache" });
   if (!res.ok) throw new Error(`static artifact ${res.status}`);
   return (await res.json()) as Artifact;
 }
